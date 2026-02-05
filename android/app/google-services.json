@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "336571036333",
+    "project_id": "home-finder-a3b5b",
+    "storage_bucket": "home-finder-a3b5b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336571036333:android:52a13c8bee205107f04c24",
+        "android_client_info": {
+          "package_name": "com.example.home_find"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKCZnNTLjtePUBG66mbK58hVrCUsF3tcM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
