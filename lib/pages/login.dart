@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -18,6 +20,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
   final _formKey=GlobalKey<FormState>();
   final _emailController=TextEditingController();
   final _passwordController=TextEditingController();
+  var _textOpacity=0.0;
   String  _errMsg='';
   @override
   void dispose(){
@@ -34,7 +37,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
       duration: const Duration(seconds: 2),
       vsync: this,
     );
-
+    
     _animation = Tween<Offset>(
       begin: const Offset(0, 2), // Start off-screen (below)
       end: Offset.zero, // End at the original position
@@ -44,6 +47,11 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
     ));
 
     _controller.forward(); 
+    Timer.periodic(Duration(milliseconds: 3500), (none){
+      setState(() {
+        _textOpacity=_textOpacity==0.0?1.0:0.0;
+      });
+    });
   }
   
   @override
@@ -64,8 +72,14 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
           child: Column(
             children:[
             SizedBox(height: size.height*0.05,),
-            Lottie.asset("assets/animated_logo/loginLogo.json",width: size.width*0.7,height: size.height*0.4),
-            SizedBox(height: size.height*0.03,),
+            Lottie.asset("assets/animated_logo/loginLogo.json",width: size.width*0.7,height: size.height*0.35,
+            repeat: true
+            ),
+            AnimatedOpacity(
+              duration: const Duration(seconds: 2),
+              opacity: _textOpacity,
+              child: Text("Dream Home!",style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold,color: Colors.black),)),
+            SizedBox(height: size.height*0.01,),
             SlideTransition(
               position: _animation,
               child: Container(
