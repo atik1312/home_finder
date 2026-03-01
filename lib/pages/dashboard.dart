@@ -48,6 +48,74 @@ class _DashboardPageState extends State<DashboardPage> {
         child: GridView(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 15,mainAxisSpacing: 15),
         children: [
+          GestureDetector(
+            onTap: () {
+              
+            },
+            child: Card(
+              elevation: 10,
+              shadowColor: Colors.white,
+              color: Colors.amber.shade100,
+              child: Center(child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.people,color: Colors.white,size: 60,),
+                  Text("User Data",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                ],
+              ),),
+            ),
+          ),
+           GestureDetector(
+            onTap: () {
+              
+            },
+            child: Card(
+              elevation: 10,
+              shadowColor: Colors.white,
+              color: Colors.amber.shade100,
+              child: Center(child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.list_alt,color: Colors.white,size: 60,),
+                  Text("All posts",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                ],
+              ),),
+            ),
+          ),
+            GestureDetector(
+            onTap: () {
+              
+            },
+            child: Card(
+              elevation: 10,
+              shadowColor: Colors.white,
+              color: Colors.amber.shade100,
+              child: Center(child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.report,color: Colors.white,size: 60,),
+                  Text("Reports",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                ],
+              ),),
+            ),
+          ),
+             GestureDetector(
+            onTap: () {
+              
+            },
+            child: Card(
+              elevation: 10,
+              shadowColor: Colors.white,
+              color: Colors.amber.shade100,
+              child: Center(child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.report,color: Colors.white,size: 60,),
+                  Text("Actions",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                ],
+              ),),
+            ),
+          ),
           
         ],
         ),
