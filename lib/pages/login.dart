@@ -17,27 +17,30 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixin{
   late AnimationController _controller;
   late Animation<Offset> _animation;
-  final _formKey=GlobalKey<FormState>();
-  final _emailController=TextEditingController();
-  final _passwordController=TextEditingController();
-  var _textOpacity=0.0;
-  String  _errMsg='';
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  Timer? _timer; // Store the Timer instance
+  var _textOpacity = 0.0;
+  String _errMsg = '';
+
   @override
-  void dispose(){
-    super.dispose();
+  void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-     
+    _controller.dispose(); // Dispose the animation controller
+    _timer?.cancel(); // Cancel the timer
+    super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-      _controller = AnimationController(
+    _controller = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
     );
-    
+
     _animation = Tween<Offset>(
       begin: const Offset(0, 2), // Start off-screen (below)
       end: Offset.zero, // End at the original position
@@ -46,11 +49,13 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
       curve: Curves.easeInOut,
     ));
 
-    _controller.forward(); 
-    Timer.periodic(Duration(milliseconds: 3500), (none){
-      setState(() {
-        _textOpacity=_textOpacity==0.0?1.0:0.0;
-      });
+    _controller.forward();
+    _timer = Timer.periodic(Duration(milliseconds: 3500), (none) {
+      if (mounted) { // Check if the widget is still in the tree
+        setState(() {
+          _textOpacity = _textOpacity == 0.0 ? 1.0 : 0.0;
+        });
+      }
     });
   }
   
@@ -87,7 +92,12 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                 padding: const EdgeInsets.all(16.0),
                 margin: const EdgeInsets.all(24.0),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  // color: Colors.white,
+                  gradient: LinearGradient(
+                    colors: [const Color.fromARGB(255, 255, 255, 255),const Color.fromARGB(255, 255, 255, 255)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight
+                  ),
                   borderRadius: BorderRadius.circular(20.0)
                 ),
                 child: Form(

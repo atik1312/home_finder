@@ -6,12 +6,20 @@ import 'package:home_find/auth/auth_service.dart';
 import 'package:home_find/firebase_options.dart';
 import 'package:home_find/pages/dashboard.dart';
 import 'package:home_find/pages/login.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
+  
   runApp(MyApp());
 }
 
